@@ -11,7 +11,7 @@ h1{
   font-size: 2em;
   letter-spacing: 2px;
   color:#db5353;
-  text-align:center"
+  text-align:center;
 }</style>
 </head>
 <body>

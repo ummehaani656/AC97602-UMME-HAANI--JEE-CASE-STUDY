@@ -11,12 +11,12 @@ h1,p{
   font-size: 2em;
   letter-spacing: 2px;
   color:#db5353;
-  text-align:center"
+  text-align:center;
 }</style>
 </head>
 </head>
 <body>
-<h1>the Donor with the following details Registered</h1>
+<h1>The following details are used for Registeration</h1>
 <p>${command}</p>
 <br>
 

@@ -7,6 +7,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<style>
+h1{
+  font-family: Georgia, sans-serif;
+  font-size: 2em;
+  letter-spacing: 2px;
+  color:#db5353;
+  text-align:center;
+}</style>
+</head>
+<body>
+<h1>Data Not Found</h1>
+<br>
 </body>
 </html>

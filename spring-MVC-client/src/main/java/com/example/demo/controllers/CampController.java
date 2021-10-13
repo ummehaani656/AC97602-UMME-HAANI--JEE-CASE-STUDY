@@ -43,7 +43,7 @@ public class CampController {
     @Autowired
     private RestTemplate template;
 
-    
+    String CampURL="http://localhost:8585/api/v1/camps";
    @GetMapping(path="/addDonationCamp")
    public String sendForm(Model model) {
       model.addAttribute("command",object);
@@ -67,7 +67,7 @@ public class CampController {
     	 HttpEntity<Camp> requestBody = new HttpEntity<>(camp,headers);
     	 
     	 
-    	 template.exchange("http://localhost:8585/api/v1/camps",HttpMethod.POST, requestBody, Camp.class);
+    	 template.exchange(CampURL,HttpMethod.POST, requestBody, Camp.class);
      }
     return nextStep;
    }
@@ -75,48 +75,30 @@ public class CampController {
    @GetMapping(path = "/getAllDonationCamps")
    public String findAll(Model model) {
 
-   Camp[] resp =template.getForObject("http://localhost:8585/api/v1/camps",
-  Camp[].class);
-   
-   model.addAttribute("details",resp);
-   return "showdetails";
+   Camp[] resp =template.getForObject(CampURL,Camp[].class);
+   if(resp.length>0) {
+	   model.addAttribute("details",resp); 
+	   return "showdetails";}
+	   else  
+	   	return "dataNotFound";
+ 
 
    }
-   
+
+
    @GetMapping(path = "/searchcampbyarea")
  public String findDonationCamp(Model model,String location) {
-	  
-
-Camp[] resp =template.getForObject("http://localhost:8585/api/v1/camps/search/"+location,
-Camp[].class);
-model.addAttribute("details",resp);
-//   model.addAttribute("location",name);
- return "showdetails";
+	 
+Camp[] resp =template.getForObject(CampURL+"/search/"+location,Camp[].class);
+if(resp.length>0) {
+model.addAttribute("details",resp); 
+return "CampDetails";}
+else  
+	return "dataNotFound";
 
   }
    
-//   @RequestMapping("/delete/{id}")
-//   public void delete(@PathVariable("id") int id) {
-//	   
-//	   HttpHeaders headers= new HttpHeaders();
-//	   headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-//	
-//	   HttpEntity<Donor> requestBody = new HttpEntity<>(headers);
-//	   
-//	   this.template.exchange("http://localhost:9090/api/v1/donations/"+id,HttpMethod.DELETE, requestBody,String.class);
-//	  
-//   }
-//   @RequestMapping(value="/update/{regNumber}/{bloodGroup}/{phoneNumber}")
-//   public void update(@PathVariable("regNumber") int regNumber,@PathVariable("bloodGroup")String bloodGroup,@PathVariable("phoneNumber")Long phoneNumber) {
-//	   
-//	   HttpHeaders headers= new HttpHeaders();
-//	   headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-//	   
-//	   HttpEntity<Donor> requestBody = new HttpEntity<>(headers);
-//	   
-//	   this.template.exchange("http://localhost:9090/api/v1/donations/"+regNumber+"/"+bloodGroup+"/"+phoneNumber,HttpMethod.PUT, requestBody,String.class);
-//	  
-//   }
+
    
    @GetMapping(path="/delete")
    public String sendForm1(Model model) {
@@ -132,7 +114,7 @@ model.addAttribute("details",resp);
 	
 	   HttpEntity<Camp> requestBody = new HttpEntity<>(headers);
 	   
-	   ResponseEntity<String>template=this.template.exchange("http://localhost:9090/api/v1/donationcamps/"+campId,HttpMethod.DELETE, requestBody,String.class);
+	   ResponseEntity<String>template=this.template.exchange(CampURL+"/"+campId,HttpMethod.DELETE, requestBody,String.class);
 	   
        if(template.getBody().contains("1 deleted")) {
 		   
@@ -143,25 +125,7 @@ model.addAttribute("details",resp);
 	   }
        
    }
-       @GetMapping(path="/edit")
-       public String sendForm2(Model model) {
-          model.addAttribute("command",object);
-          return "edit";
-       }
-       
-       @RequestMapping(value="/editDetails")
-     public ResponseEntity<String> update(@RequestParam("regNumber") int campId,@RequestParam("donationCampName")String campName,@RequestParam("location")String location) {
-  	   
-  	   HttpHeaders headers= new HttpHeaders();
-  	   headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
-  	   
-  	   HttpEntity<Camp> requestBody = new HttpEntity<>(headers);
-  	   
-  	   this.template.exchange("http://localhost:8585/api/v1/donationcamps/"+campId+"/"+campName+"/"+location,HttpMethod.PUT, requestBody,String.class);
-  	  
-  	   return ResponseEntity.ok().body("Updated Details: CampId:= "+campId+", DonationCampName:= "+campName+", Location"+location);
-     }
-	  
+     
  
    
    

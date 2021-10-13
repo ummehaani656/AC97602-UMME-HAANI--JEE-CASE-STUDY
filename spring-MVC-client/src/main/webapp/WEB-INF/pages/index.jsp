@@ -9,21 +9,12 @@ pageEncoding="ISO-8859-1"%>
 <style>
 * {box-sizing: border-box;}
 
-.mySlides {display:none;}
 h1{
 font-size: 50px;
 font-style:oblique;
 color:#fa8072}
 
-input[type="text"]
-{
-    border: none;
-    background:silver;
-    height: 50px;
-    font-size: 16px;
-	margin-left:2%;
-	padding:15px;	
-}
+
 
 
 body {
@@ -93,7 +84,7 @@ text-align: left;
 p {
 font-size:70px;
 font-style: oblique;
-color: ff726f;
+color: red;
 }
 table {
 border:2px solid red;
