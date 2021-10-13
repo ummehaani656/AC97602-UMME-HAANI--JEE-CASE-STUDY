@@ -1,0 +1,34 @@
+spring:
+  application:
+    name: Camp-Service 
+  datasource:
+    url: jdbc:oracle:thin:@//localhost:1521/XEPDB1
+    username: hr
+    password: hr
+  jpa:
+    show-sql: true  
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - "*"
+  endpoint:
+    shutdown:
+      enabled: true     
+
+
+
+        
+info:
+  build:
+    artificatId: '@project.artifact@'
+    groupId: '@project.groupId@'
+    
+  java:
+    version: 8.0
+
+server:
+  port: 8585
+
+  
