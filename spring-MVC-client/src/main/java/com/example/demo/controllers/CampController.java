@@ -92,7 +92,7 @@ public class CampController {
 Camp[] resp =template.getForObject(CampURL+"/search/"+location,Camp[].class);
 if(resp.length>0) {
 model.addAttribute("details",resp); 
-return "CampDetails";}
+return "showdetails";}
 else  
 	return "dataNotFound";
 

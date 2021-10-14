@@ -20,14 +20,14 @@ color:#fa8072}
 body {
 margin: 0;
 font-family: Arial, Helvetica, sans-serif;
-background-color:#fe6f5e;
+background-color:#ffc6c4;
 }
 
 
 
 .header {
 overflow: hidden;
-background-color: #ffd2cd;
+background-color: #D75C5C;
 padding: 20px 10px;
 }
 
